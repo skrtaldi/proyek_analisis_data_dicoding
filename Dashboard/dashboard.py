@@ -121,7 +121,7 @@ with tab2:
     
     with col1:
         fig, ax = plt.subplots(figsize=(8, 6))
-        sns.boxplot(x="year", y="TEMP", data=filtered_data, ax=ax, palette="RdYlBu_r")
+        sns.boxplot(hue="year", y="TEMP", data=filtered_data, ax=ax, palette="RdYlBu_r", legend=False)
         ax.set_title("Distribusi Temperatur Per Tahun")
         ax.set_xlabel("Tahun")
         ax.set_ylabel("Temperature (°C)")
@@ -131,7 +131,7 @@ with tab2:
     
     with col2:
         fig, ax = plt.subplots(figsize=(8, 6))
-        sns.boxplot(x="year", y="PRES", data=filtered_data, ax=ax, palette="Blues")
+        sns.boxplot(hue="year", y="PRES", data=filtered_data, ax=ax, palette="Blues", legend=False)
         ax.set_title("Distribusi Tekanan Atmosfer Per Tahun")
         ax.set_xlabel("Tahun")
         ax.set_ylabel("Pressure (hPa)")
