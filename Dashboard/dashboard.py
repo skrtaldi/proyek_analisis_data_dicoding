@@ -6,7 +6,7 @@ import gdown
 
 
 st.set_page_config(
-    page_title="Dashboard Tren Temperatur dan Tekanan Atmosfer",
+    page_title="Dashboard Tren Temperatur dan Tekanan Atmosfer Wilayah Dingling Periode 2013-2017",
     layout="wide"
 )
 
