@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
 from datetime import datetime
 
 
@@ -102,18 +101,6 @@ with tab1:
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
     
-    plt.grid(True, alpha=0.3)
-    plt.title('Tren Rata-rata Temperatur dan Tekanan Atmosfer Per Tahun', fontsize=14)
-    st.pyplot(fig)
-    
-    if len(yearly_data) > 1:
-        temp_trend = np.polyfit(yearly_data['year'], yearly_data['TEMP_mean'], 1)
-        pres_trend = np.polyfit(yearly_data['year'], yearly_data['PRES_mean'], 1)
-        
-        st.write("### Analisis Tren:")
-        st.write(f"- Temperatur: {temp_trend[0]:.4f} °C/tahun")
-        st.write(f"- Tekanan: {pres_trend[0]:.4f} hPa/tahun")
-
 with tab2:
     st.subheader("Distribusi Temperatur dan Tekanan Atmosfer")
     
