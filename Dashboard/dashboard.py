@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from datetime import datetime
+import gdown
 
 
 st.set_page_config(
@@ -10,8 +10,13 @@ st.set_page_config(
     layout="wide"
 )
 
+file_id = "1GU4-tpp_mqsFNoh3HvBvI2M72lqCSLPF"
+url = f"https://drive.google.com/uc?id={file_id}"
+output = "data.csv"
+gdown.download(url, output, quiet=False)
+
 def load_data():
-    data = pd.read_csv("main_data.csv", parse_dates=["datetime"])
+    data = pd.read_csv(output, parse_dates=["datetime"])
     data["year"] = data["datetime"].dt.year
     data["month"] = data["datetime"].dt.month
     data["day"] = data["datetime"].dt.day
@@ -100,6 +105,10 @@ with tab1:
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+
+    plt.grid(True, alpha=0.3)
+    plt.title('Tren Rata-rata Temperatur dan Tekanan Atmosfer Per Tahun', fontsize=14)
+    st.pyplot(fig)
     
 with tab2:
     st.subheader("Distribusi Temperatur dan Tekanan Atmosfer")
@@ -113,7 +122,6 @@ with tab2:
         ax.set_xlabel("Tahun")
         ax.set_ylabel("Temperature (°C)")
         plt.xticks(rotation=45)
-        plt.tight_layout()
         st.pyplot(fig)
     
     with col2:
@@ -123,7 +131,6 @@ with tab2:
         ax.set_xlabel("Tahun")
         ax.set_ylabel("Pressure (hPa)")
         plt.xticks(rotation=45)
-        plt.tight_layout()
         st.pyplot(fig)
     
     st.subheader("Histogram dan Density Plot")
@@ -135,7 +142,6 @@ with tab2:
         sns.histplot(filtered_data["TEMP"], kde=True, ax=ax, color="red")
         ax.set_title("Distribusi Frekuensi Temperatur")
         ax.set_xlabel("Temperature (°C)")
-        plt.tight_layout()
         st.pyplot(fig)
     
     with col2:
@@ -143,7 +149,6 @@ with tab2:
         sns.histplot(filtered_data["PRES"], kde=True, ax=ax, color="blue")
         ax.set_title("Distribusi Frekuensi Tekanan Atmosfer")
         ax.set_xlabel("Pressure (hPa)")
-        plt.tight_layout()
         st.pyplot(fig)
 
 with tab3:
