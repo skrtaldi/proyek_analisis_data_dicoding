@@ -225,14 +225,3 @@ with tab3:
         st.pyplot(fig)
     else:
         st.info("Data tidak cukup untuk analisis musiman. Harap pilih rentang tahun yang lebih lebar.")
-
-with st.expander("Lihat Data"):
-    st.dataframe(filtered_data)
-
-    csv = filtered_data.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        label="Download data sebagai CSV",
-        data=csv,
-        file_name="temperature_pressure_data.csv",
-        mime="text/csv",
-    )
